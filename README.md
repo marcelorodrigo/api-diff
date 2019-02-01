@@ -97,3 +97,4 @@ by running this command on project root:
 A report will be stored at `target/site/clover/index.html`
 just open that file.
 
+![image](https://user-images.githubusercontent.com/443962/52155261-004d5380-2669-11e9-91ad-ff4d32251f8a.png)
