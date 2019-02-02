@@ -14,11 +14,12 @@ and providing analysis about the difference between data stored.
 - [Mockito](https://site.mockito.org/)
 - [OpenClover](https://openclover.org)
 
-## Technical Requirements
+## Prerequisites
 
 - JDK 1.8
-- Maven 3.5
+- Maven 3.5 (or newer)
 - Git
+- HTTP 8080 port available (to run API server)
 
 ### Compiling and Running
 
