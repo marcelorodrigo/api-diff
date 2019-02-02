@@ -6,7 +6,7 @@ and providing analysis about the difference between data stored.
 
 ## Technologies
 
-- Java JDK 8
+- Java 8
 - [Spring Boot](http://spring.io/projects/spring-boot)
 - [Swagger](https://swagger.io/)
 - [Swagger UI](https://swagger.io/tools/swagger-ui/)
@@ -30,7 +30,7 @@ and providing analysis about the difference between data stored.
  > java -jar target/api-diff-1.0.0.jar
  4. You can access swagger via URL:
 > http://localhost:8080/swagger-ui.html
-Service is up and running and ready to use
+API Service is up and running and ready to use
 
 ## API Usage
 
@@ -42,22 +42,26 @@ The following API endpoints ara available to post data:
 >**POST**: http://localhost:8080/v1/diff/{ID}/right
 
 * You must provide ID as a pathparam and the
-JSON base64 string directly as payload:
->TWFyY2Vsbw==
+JSON base64 string as payload:
+>{"data": "TWFyY2Vsbw=="}
 
 You will get following HTTP response codes as result:
 >**201 Created**: Ok
 >
 >**400 Bad Request**: Invalid base64 data provided
 
+These endpoints will validate and store decoded your base64 binary data posted.
+
 ### Getting the results
 Considering that you posted data for left and right endpoints, you can retrieve the comparing results on the following result endpoint:
 
 >http://localhost:8080/rest/api/v1/diff/{ID}
 
-* You must provide ID as a pathparam
+* You must provide ID as a Path param
 
 #### Results
+
+All results provided will be considered as decoded base64 binary data.
 
 * If LEFT and RIGHT data are equals:
 >{
@@ -84,17 +88,17 @@ Considering that you posted data for left and right endpoints, you can retrieve 
 
 
 
-### Tests
+## Tests
 This project is covered by unit tests and API integration tests, you can
-execute all the tests by running this command on project root:
+execute all these tests by running this command on project root:
 > mvn test
 
 #### Code Coverage
-You can check this project code coverage using [Clover](https://openclover.org),
+You can check this project code coverage and other metrics using [Clover](https://openclover.org),
 by running this command on project root:
 > mvn clean clover:setup test clover:aggregate clover:clover
 
 A report will be stored at `target/site/clover/index.html`
-just open that file.
+just open that file on your browser.
 
-![image](https://user-images.githubusercontent.com/443962/52155261-004d5380-2669-11e9-91ad-ff4d32251f8a.png)
+![image](https://user-images.githubusercontent.com/443962/52166428-3e438980-26f4-11e9-9ae1-e7ef9c45ba2e.png)
