@@ -2,10 +2,11 @@ package com.marcelorodrigo.apidifference.service;
 
 import com.marcelorodrigo.apidifference.exception.DiffException;
 import com.marcelorodrigo.apidifference.exception.DiffNotFoundException;
+import com.marcelorodrigo.apidifference.exception.InvalidBase64Exception;
 import com.marcelorodrigo.apidifference.model.Diff;
-import com.marcelorodrigo.apidifference.model.DiffResult;
 import com.marcelorodrigo.apidifference.model.ResultType;
 import com.marcelorodrigo.apidifference.repository.DiffRepository;
+import com.marcelorodrigo.apidifference.vo.DiffResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -52,6 +53,11 @@ public class DiffServiceTest {
         assertNull(saved.getRight());
     }
 
+    @Test(expected = InvalidBase64Exception.class)
+    public void addLeftEmptyData() throws Exception {
+        diffService.addLeft("id-left-empty", "");
+    }
+
     @Test
     public void addRightNewRecord() throws Exception {
         String id = "123";
@@ -63,6 +69,11 @@ public class DiffServiceTest {
         assertEquals(id, saved.getId());
         assertEquals(decoded, saved.getRight());
         assertNull(saved.getLeft());
+    }
+
+    @Test(expected = InvalidBase64Exception.class)
+    public void addRightEmptyData() throws Exception {
+        diffService.addRight("id-right-empty", "");
     }
 
     @Test(expected = DiffException.class)

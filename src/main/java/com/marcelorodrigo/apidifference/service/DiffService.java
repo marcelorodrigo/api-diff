@@ -4,11 +4,11 @@ import com.marcelorodrigo.apidifference.exception.DiffException;
 import com.marcelorodrigo.apidifference.exception.DiffNotFoundException;
 import com.marcelorodrigo.apidifference.exception.InvalidBase64Exception;
 import com.marcelorodrigo.apidifference.model.Diff;
-import com.marcelorodrigo.apidifference.model.DiffResult;
 import com.marcelorodrigo.apidifference.model.ResultType;
 import com.marcelorodrigo.apidifference.repository.DiffRepository;
 import com.marcelorodrigo.apidifference.util.Base64Util;
 import com.marcelorodrigo.apidifference.util.StringProcessor;
+import com.marcelorodrigo.apidifference.vo.DiffResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -32,6 +32,9 @@ public class DiffService {
     }
 
     public Diff addLeft(String id, String data) throws InvalidBase64Exception {
+        if (StringUtils.isEmpty(data)) {
+            throw new InvalidBase64Exception("Data is empty");
+        }
         Diff diff = getById(id).orElse(new Diff(id));
         diff.setLeft(Base64Util.decode(data));
         diffRepository.save(diff);
@@ -40,6 +43,9 @@ public class DiffService {
 
 
     public Diff addRight(String id, String data) throws InvalidBase64Exception {
+        if (StringUtils.isEmpty(data)) {
+            throw new InvalidBase64Exception("Data is empty");
+        }
         Diff diff = getById(id).orElse(new Diff(id));
         diff.setRight(Base64Util.decode(data));
         diffRepository.save(diff);
