@@ -81,7 +81,7 @@ All results provided will be considered as decoded base64 binary data.
   "message": "{offset=1, length=1}, {offset=3, length=1}"
 }
 
-### Errors
+#### HTTP Errors
 >**400 Bad Request**: Missing data for LEFT or RIGHT side
 >
 >**404 Not Found**: ID not found
