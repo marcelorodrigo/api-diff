@@ -36,7 +36,7 @@ API Service is up and running and ready to use
 ## API Usage
 
 ### Sending data
-The following API endpoints ara available to post data:
+The following API endpoints are available to post data:
 
 >**POST**: http://localhost:8080/v1/diff/{ID}/left
 >
@@ -46,7 +46,7 @@ The following API endpoints ara available to post data:
 JSON base64 string as payload:
 >{"data": "TWFyY2Vsbw=="}
 
-You will get following HTTP response codes as result:
+The following HTTP response codes will be returned as result:
 >**201 Created**: Ok
 >
 >**400 Bad Request**: Invalid base64 data provided
