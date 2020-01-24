@@ -8,24 +8,15 @@ import com.marcelorodrigo.apidifference.model.ResultType;
 import com.marcelorodrigo.apidifference.service.DiffService;
 import com.marcelorodrigo.apidifference.vo.Base64VO;
 import com.marcelorodrigo.apidifference.vo.DiffResult;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/v1/diff")
@@ -44,7 +35,7 @@ public class DiffController {
             @ApiResponse(code = 201, message = "OK"),
             @ApiResponse(code = 400, message = "Invalid base64 data provided")
     })
-    @PostMapping(value = "{id}/left", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "{id}/left", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> leftPost(
             @ApiParam(value = "ID", required = true) @PathVariable String id,
             @ApiParam(value = "JSON Base64", required = true) @RequestBody Base64VO base64) {
@@ -62,7 +53,7 @@ public class DiffController {
             @ApiResponse(code = 201, message = "Ok"),
             @ApiResponse(code = 400, message = "Invalid base64 data provided")
     })
-    @PostMapping(value = "{id}/right", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "{id}/right", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> rightPost(
             @ApiParam(value = "ID", required = true) @PathVariable String id,
             @ApiParam(value = "JSON Base64", required = true) @RequestBody Base64VO base64) {
@@ -80,7 +71,7 @@ public class DiffController {
             @ApiResponse(code = 400, message = "Invalid data to compare, check details", response = DiffResult.class),
             @ApiResponse(code = 404, message = "ID not found")
     })
-    @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "{id}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<DiffResult> getDiff(
             @ApiParam(value = "ID", required = true) @PathVariable String id) {
         try {
