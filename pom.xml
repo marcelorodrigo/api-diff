@@ -15,7 +15,7 @@
     </parent>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <spring.fox.version>2.9.2</spring.fox.version>
         <sonar.projectKey>marcelorodrigo_api-diff</sonar.projectKey>
         <sonar.organization>marcelorodrigo</sonar.organization>

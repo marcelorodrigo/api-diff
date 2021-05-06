@@ -6,18 +6,17 @@ and providing analysis about the difference between data stored.
 
 ## Technologies
 
-- Java 8
+- Java 11
 - [Spring Boot](http://spring.io/projects/spring-boot)
 - [Swagger](https://swagger.io/)
 - [Swagger UI](https://swagger.io/tools/swagger-ui/)
-- [JUnit](https://junit.org/junit4/)
 - [Mockito](https://site.mockito.org/)
 - [OpenClover](https://openclover.org)
 
 ## Prerequisites
 
-- JDK 1.8
-- Maven 3.5 (or newer)
+- JDK 11
+- Maven 3.6 (or newer)
 - Git
 - HTTP 8080 port available (to run API server)
 
