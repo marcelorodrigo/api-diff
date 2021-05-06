@@ -7,19 +7,19 @@ import com.marcelorodrigo.apidifference.model.Diff;
 import com.marcelorodrigo.apidifference.model.ResultType;
 import com.marcelorodrigo.apidifference.repository.DiffRepository;
 import com.marcelorodrigo.apidifference.vo.DiffResult;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+
+@ExtendWith(MockitoExtension.class)
 public class DiffServiceTest {
 
     @Mock
@@ -53,9 +53,9 @@ public class DiffServiceTest {
         assertNull(saved.getRight());
     }
 
-    @Test(expected = InvalidBase64Exception.class)
-    public void addLeftEmptyData() throws Exception {
-        diffService.addLeft("id-left-empty", "");
+    @Test
+    public void addLeftEmptyData() {
+        assertThrows(InvalidBase64Exception.class, () -> diffService.addLeft("id-left-empty", ""));
     }
 
     @Test
@@ -71,32 +71,32 @@ public class DiffServiceTest {
         assertNull(saved.getLeft());
     }
 
-    @Test(expected = InvalidBase64Exception.class)
-    public void addRightEmptyData() throws Exception {
-        diffService.addRight("id-right-empty", "");
+    @Test
+    public void addRightEmptyData() {
+        assertThrows(InvalidBase64Exception.class, () -> diffService.addRight("id-right-empty", ""));
     }
 
-    @Test(expected = DiffException.class)
-    public void validateDataMissingLeft() throws Exception {
-        diffService.validateDataPresence(new Diff("id").setRight("YQ=="));
+    @Test
+    public void validateDataMissingLeft() {
+        assertThrows(DiffException.class, () -> diffService.validateDataPresence(new Diff("id").setRight("YQ==")));
     }
 
-    @Test(expected = DiffException.class)
-    public void validateDataMissingRight() throws Exception {
-        diffService.validateDataPresence(new Diff("id").setLeft("Yg=="));
+    @Test
+    public void validateDataMissingRight() {
+        assertThrows(DiffException.class, () -> diffService.validateDataPresence(new Diff("id").setLeft("Yg==")));
     }
 
-    @Test(expected = DiffNotFoundException.class)
-    public void getDifferenceNonExistingID() throws Exception {
-        String id = "129";
+    @Test
+    public void getDifferenceNonExistingID() {
+        final String id = "129";
 
         when(diffRepository.getById(id)).thenReturn(Optional.empty());
-        diffService.getDifference(id);
+        assertThrows(DiffNotFoundException.class, () -> diffService.getDifference(id));
     }
 
     @Test
     public void getDifferenceEquals() throws Exception {
-        String id = "130";
+        final String id = "130";
         Diff diff = new Diff(id).setLeft("Yg==").setRight("Yg==");
 
         when(diffRepository.getById(id)).thenReturn(Optional.of(diff));
@@ -108,7 +108,7 @@ public class DiffServiceTest {
 
     @Test
     public void getDifferenceLengthNotEquals() throws Exception {
-        String id = "131";
+        final String id = "131";
         Diff diff = new Diff(id).setLeft("YjExYQ==").setRight("YmM=");
 
         when(diffRepository.getById(id)).thenReturn(Optional.of(diff));
@@ -120,7 +120,7 @@ public class DiffServiceTest {
 
     @Test
     public void getDifferenceSameLength() throws Exception {
-        String id = "132";
+        final String id = "132";
         Diff diff = new Diff(id).setLeft("Ym9ieQ==").setRight("YmFiYQ==");
         String messageExpected = "{offset=2, length=1}, {offset=4, length=1}";
 
