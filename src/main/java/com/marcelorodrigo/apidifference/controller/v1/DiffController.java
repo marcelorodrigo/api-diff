@@ -3,7 +3,6 @@ package com.marcelorodrigo.apidifference.controller.v1;
 import com.marcelorodrigo.apidifference.exception.DiffException;
 import com.marcelorodrigo.apidifference.exception.DiffNotFoundException;
 import com.marcelorodrigo.apidifference.exception.InvalidBase64Exception;
-import com.marcelorodrigo.apidifference.model.Diff;
 import com.marcelorodrigo.apidifference.model.ResultType;
 import com.marcelorodrigo.apidifference.service.DiffService;
 import com.marcelorodrigo.apidifference.vo.Base64VO;
