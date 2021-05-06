@@ -4,6 +4,7 @@ import com.marcelorodrigo.apidifference.exception.DiffException;
 import com.marcelorodrigo.apidifference.exception.DiffNotFoundException;
 import com.marcelorodrigo.apidifference.exception.InvalidBase64Exception;
 import com.marcelorodrigo.apidifference.model.Diff;
+import com.marcelorodrigo.apidifference.model.Difference;
 import com.marcelorodrigo.apidifference.model.ResultType;
 import com.marcelorodrigo.apidifference.repository.DiffRepository;
 import com.marcelorodrigo.apidifference.util.Base64Util;
@@ -21,7 +22,7 @@ public class DiffService {
     public static final String MISSING_LEFT_DATA = "Missing left data to compare differences";
     public static final String MISSING_RIGHT_DATA = "Missing right data to compare differences";
 
-    private DiffRepository diffRepository;
+    private final DiffRepository diffRepository;
 
     public DiffService(DiffRepository diffRepository) {
         this.diffRepository = diffRepository;
@@ -35,7 +36,7 @@ public class DiffService {
         if (StringUtils.isEmpty(data)) {
             throw new InvalidBase64Exception("Data is empty");
         }
-        Diff diff = getById(id).orElse(new Diff(id));
+        var diff = getById(id).orElse(new Diff(id));
         diff.setLeft(Base64Util.decode(data));
         diffRepository.save(diff);
         return diff;
@@ -46,7 +47,7 @@ public class DiffService {
         if (StringUtils.isEmpty(data)) {
             throw new InvalidBase64Exception("Data is empty");
         }
-        Diff diff = getById(id).orElse(new Diff(id));
+        var diff = getById(id).orElse(new Diff(id));
         diff.setRight(Base64Util.decode(data));
         diffRepository.save(diff);
         return diff;
@@ -61,23 +62,22 @@ public class DiffService {
      * @throws DiffException         When Diff entity has invalid or missing data
      */
     public DiffResult getDifference(String id) throws DiffNotFoundException, DiffException {
-        Diff diff = getById(id).orElseThrow(DiffNotFoundException::new);
+        var diff = getById(id).orElseThrow(DiffNotFoundException::new);
         validateDataPresence(diff);
 
-        DiffResult result = getDiffFromStrings(diff.getLeft(), diff.getRight());
-        return result;
+        return getDiffFromStrings(diff.getLeft(), diff.getRight());
     }
 
     private DiffResult getDiffFromStrings(String left, String right) {
-        DiffResult result = new DiffResult();
+        var result = new DiffResult();
 
         if (left.equals(right)) {
             result.setResultType(ResultType.EQUALS);
         } else if (left.length() != right.length()) {
             result.setResultType(ResultType.DIFFERENT_LENGTH);
         } else {
-            String collect = StringProcessor.getDifferences(left, right)
-                    .stream().map(d -> d.toString())
+            var collect = StringProcessor.getDifferences(left, right)
+                    .stream().map(Difference::toString)
                     .collect(Collectors.joining(", "));
             result.setResultType(ResultType.SAME_LENGTH);
             result.setMessage(collect);
@@ -89,7 +89,7 @@ public class DiffService {
      * Validate presence of data on left and right sides
      *
      * @param diff Diff entity
-     * @throws DiffException
+     * @throws DiffException Throws if one of sides is missing or empty
      */
     public void validateDataPresence(Diff diff) throws DiffException {
         if (StringUtils.isEmpty(diff.getLeft())) {

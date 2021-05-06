@@ -8,12 +8,15 @@ import java.util.Objects;
 
 public class StringProcessor {
 
+    private StringProcessor() {
+    }
+
     public static List<Difference> getDifferences(final String left, final String right) {
         List<Difference> diffList = new ArrayList<>();
         Integer diffStart = null;
-        int diffLength = 0;
+        var diffLength = 0;
 
-        for (int position = 0; position <= left.length(); position++) {
+        for (var position = 0; position <= left.length(); position++) {
             if (position < left.length() && left.charAt(position) != right.charAt(position)) {
                 diffStart = Objects.isNull(diffStart) ? position : diffStart;
                 diffLength++;

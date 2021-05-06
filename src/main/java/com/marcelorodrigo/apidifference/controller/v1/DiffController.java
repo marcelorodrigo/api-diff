@@ -23,7 +23,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Api(value = "Difference Controller")
 public class DiffController {
 
-    private DiffService diffService;
+    private final DiffService diffService;
 
     public DiffController(DiffService diffService) {
         this.diffService = diffService;
@@ -40,7 +40,7 @@ public class DiffController {
             @ApiParam(value = "ID", required = true) @PathVariable String id,
             @ApiParam(value = "JSON Base64", required = true) @RequestBody Base64VO base64) {
         try {
-            Diff diff = diffService.addLeft(id, base64.getData());
+            var diff = diffService.addLeft(id, base64.getData());
             return ResponseEntity.created(getCreatedURI(diff.getId())).build();
         } catch (InvalidBase64Exception e) {
             return ResponseEntity.badRequest().build();
@@ -58,7 +58,7 @@ public class DiffController {
             @ApiParam(value = "ID", required = true) @PathVariable String id,
             @ApiParam(value = "JSON Base64", required = true) @RequestBody Base64VO base64) {
         try {
-            Diff diff = diffService.addRight(id, base64.getData());
+            var diff = diffService.addRight(id, base64.getData());
             return ResponseEntity.created(getCreatedURI(diff.getId())).build();
         } catch (InvalidBase64Exception e) {
             return ResponseEntity.badRequest().build();
