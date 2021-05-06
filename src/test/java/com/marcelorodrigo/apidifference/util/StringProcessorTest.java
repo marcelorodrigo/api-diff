@@ -7,10 +7,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StringProcessorTest {
+class StringProcessorTest {
 
     @Test
-    public void getDifferences() {
+    void getDifferences() {
         final String left = "Marcelo Rodrigo";
         final String right = "MarXYlo RoTrig9";
 

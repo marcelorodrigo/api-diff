@@ -18,9 +18,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-
 @ExtendWith(MockitoExtension.class)
-public class DiffServiceTest {
+class DiffServiceTest {
 
     @Mock
     private DiffRepository diffRepository;
@@ -29,7 +28,7 @@ public class DiffServiceTest {
     private DiffService diffService;
 
     @Test
-    public void getByIDExisting() {
+    void getByIDExisting() {
         // Arrange
         String id = "412";
         Diff shouldReturn = new Diff(id);
@@ -41,7 +40,7 @@ public class DiffServiceTest {
     }
 
     @Test
-    public void addLeftNewRecord() throws Exception {
+    void addLeftNewRecord() throws Exception {
         String id = "121";
         String encoded = "VHVlc2RheQ==";
         String decoded = "Tuesday";
@@ -54,12 +53,12 @@ public class DiffServiceTest {
     }
 
     @Test
-    public void addLeftEmptyData() {
+    void addLeftEmptyData() {
         assertThrows(InvalidBase64Exception.class, () -> diffService.addLeft("id-left-empty", ""));
     }
 
     @Test
-    public void addRightNewRecord() throws Exception {
+    void addRightNewRecord() throws Exception {
         String id = "123";
         String encoded = "TW9uZGF5";
         String decoded = "Monday";
@@ -72,22 +71,22 @@ public class DiffServiceTest {
     }
 
     @Test
-    public void addRightEmptyData() {
+    void addRightEmptyData() {
         assertThrows(InvalidBase64Exception.class, () -> diffService.addRight("id-right-empty", ""));
     }
 
     @Test
-    public void validateDataMissingLeft() {
+    void validateDataMissingLeft() {
         assertThrows(DiffException.class, () -> diffService.validateDataPresence(new Diff("id").setRight("YQ==")));
     }
 
     @Test
-    public void validateDataMissingRight() {
+    void validateDataMissingRight() {
         assertThrows(DiffException.class, () -> diffService.validateDataPresence(new Diff("id").setLeft("Yg==")));
     }
 
     @Test
-    public void getDifferenceNonExistingID() {
+    void getDifferenceNonExistingID() {
         final String id = "129";
 
         when(diffRepository.getById(id)).thenReturn(Optional.empty());
@@ -95,7 +94,7 @@ public class DiffServiceTest {
     }
 
     @Test
-    public void getDifferenceEquals() throws Exception {
+    void getDifferenceEquals() throws Exception {
         final String id = "130";
         Diff diff = new Diff(id).setLeft("Yg==").setRight("Yg==");
 
@@ -107,7 +106,7 @@ public class DiffServiceTest {
     }
 
     @Test
-    public void getDifferenceLengthNotEquals() throws Exception {
+    void getDifferenceLengthNotEquals() throws Exception {
         final String id = "131";
         Diff diff = new Diff(id).setLeft("YjExYQ==").setRight("YmM=");
 
@@ -119,7 +118,7 @@ public class DiffServiceTest {
     }
 
     @Test
-    public void getDifferenceSameLength() throws Exception {
+    void getDifferenceSameLength() throws Exception {
         final String id = "132";
         Diff diff = new Diff(id).setLeft("Ym9ieQ==").setRight("YmFiYQ==");
         String messageExpected = "{offset=2, length=1}, {offset=4, length=1}";

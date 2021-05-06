@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DiffControllerTest {
+class DiffControllerTest {
 
     public static final String BASE_URL = "/v1/diff";
 
@@ -27,35 +27,35 @@ public class DiffControllerTest {
 
 
     @Test
-    public void leftPost() {
+    void leftPost() {
         ResponseEntity<Void> response = restTemplate
                 .postForEntity(BASE_URL + "/100/left", new Base64VO("Yg=="), Void.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.CREATED));
     }
 
     @Test
-    public void leftPostInvalidBase64() {
+    void leftPostInvalidBase64() {
         ResponseEntity<Void> response = restTemplate
                 .postForEntity(BASE_URL + "/11/left", new Base64VO("some-invalid-data"), Void.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
     }
 
     @Test
-    public void rightPost() {
+    void rightPost() {
         ResponseEntity<Void> response = restTemplate
                 .postForEntity(BASE_URL + "/101/right", new Base64VO("Yw=="), Void.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.CREATED));
     }
 
     @Test
-    public void rightPostInvalidBase64() {
+    void rightPostInvalidBase64() {
         ResponseEntity<Void> response = restTemplate
                 .postForEntity(BASE_URL + "/11/right", new Base64VO("some-invalid-data-right"), Void.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
     }
 
     @Test
-    public void getDiffNotFound() {
+    void getDiffNotFound() {
         ResponseEntity<DiffResult> diffResponse = restTemplate
                 .getForEntity(BASE_URL + "/non-existing-id", DiffResult.class);
 
@@ -63,7 +63,7 @@ public class DiffControllerTest {
     }
 
     @Test
-    public void getDiffInvalidData() {
+    void getDiffInvalidData() {
         // Creating only right data
         restTemplate.postForEntity(BASE_URL + "/103/right", new Base64VO("ZA=="), Void.class);
 
@@ -76,7 +76,7 @@ public class DiffControllerTest {
     }
 
     @Test
-    public void getDiff() {
+    void getDiff() {
         String diffExpected = "{offset=1, length=1}, {offset=3, length=2}";
 
         // Creating left data
