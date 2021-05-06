@@ -128,6 +128,6 @@ public class DiffServiceTest {
         DiffResult difference = diffService.getDifference(id);
 
         assertEquals(ResultType.SAME_LENGTH, difference.getResultType());
-        assertEquals(messageExpected, messageExpected);
+        assertEquals(messageExpected, difference.getMessage());
     }
 }
