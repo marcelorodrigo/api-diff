@@ -1,6 +1,8 @@
 API Difference
 ==============
 
+[![Java CI with Maven](https://github.com/marcelorodrigo/api-diff/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/marcelorodrigo/api-diff/actions/workflows/maven.yml)
+
 This simple API works on accepting JSON base64 encoded binary data
 and providing analysis about the difference between data stored.
 
