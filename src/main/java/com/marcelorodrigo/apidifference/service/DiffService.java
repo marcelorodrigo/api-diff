@@ -11,7 +11,7 @@ import com.marcelorodrigo.apidifference.util.Base64Util;
 import com.marcelorodrigo.apidifference.util.StringProcessor;
 import com.marcelorodrigo.apidifference.vo.DiffResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,8 +32,8 @@ public class DiffService {
         return diffRepository.getById(id);
     }
 
-    public Diff addLeft(String id, String data) throws InvalidBase64Exception {
-        if (StringUtils.isEmpty(data)) {
+    public Diff addLeft(final String id, final String data) throws InvalidBase64Exception {
+        if (ObjectUtils.isEmpty(data)) {
             throw new InvalidBase64Exception("Data is empty");
         }
         var diff = getById(id).orElse(new Diff(id));
@@ -43,8 +43,8 @@ public class DiffService {
     }
 
 
-    public Diff addRight(String id, String data) throws InvalidBase64Exception {
-        if (StringUtils.isEmpty(data)) {
+    public Diff addRight(final String id, final String data) throws InvalidBase64Exception {
+        if (ObjectUtils.isEmpty(data)) {
             throw new InvalidBase64Exception("Data is empty");
         }
         var diff = getById(id).orElse(new Diff(id));
@@ -92,10 +92,10 @@ public class DiffService {
      * @throws DiffException Throws if one of sides is missing or empty
      */
     public void validateDataPresence(Diff diff) throws DiffException {
-        if (StringUtils.isEmpty(diff.getLeft())) {
+        if (ObjectUtils.isEmpty(diff.getLeft())) {
             throw new DiffException(MISSING_LEFT_DATA);
         }
-        if (StringUtils.isEmpty(diff.getRight())) {
+        if (ObjectUtils.isEmpty(diff.getRight())) {
             throw new DiffException(MISSING_RIGHT_DATA);
         }
     }
