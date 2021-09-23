@@ -30,8 +30,8 @@ class DiffServiceTest {
     @Test
     void getByIDExisting() {
         // Arrange
-        String id = "412";
-        Diff shouldReturn = new Diff(id);
+        var id = "412";
+        var shouldReturn = new Diff(id);
 
         // Act
         when(diffRepository.getById(id)).thenReturn(Optional.of(shouldReturn));
@@ -41,11 +41,11 @@ class DiffServiceTest {
 
     @Test
     void addLeftNewRecord() throws Exception {
-        String id = "121";
-        String encoded = "VHVlc2RheQ==";
-        String decoded = "Tuesday";
+        var id = "121";
+        var encoded = "VHVlc2RheQ==";
+        var decoded = "Tuesday";
 
-        Diff saved = diffService.addLeft(id, encoded);
+        var saved = diffService.addLeft(id, encoded);
 
         assertEquals(id, saved.getId());
         assertEquals(decoded, saved.getLeft());
@@ -59,11 +59,11 @@ class DiffServiceTest {
 
     @Test
     void addRightNewRecord() throws Exception {
-        String id = "123";
-        String encoded = "TW9uZGF5";
-        String decoded = "Monday";
+        var id = "123";
+        var encoded = "TW9uZGF5";
+        var decoded = "Monday";
 
-        Diff saved = diffService.addRight(id, encoded);
+        var saved = diffService.addRight(id, encoded);
 
         assertEquals(id, saved.getId());
         assertEquals(decoded, saved.getRight());
@@ -87,7 +87,7 @@ class DiffServiceTest {
 
     @Test
     void getDifferenceNonExistingID() {
-        final String id = "129";
+        final var id = "129";
 
         when(diffRepository.getById(id)).thenReturn(Optional.empty());
         assertThrows(DiffNotFoundException.class, () -> diffService.getDifference(id));
@@ -95,11 +95,11 @@ class DiffServiceTest {
 
     @Test
     void getDifferenceEquals() throws Exception {
-        final String id = "130";
-        Diff diff = new Diff(id).setLeft("Yg==").setRight("Yg==");
+        final var id = "130";
+        var diff = new Diff(id).setLeft("Yg==").setRight("Yg==");
 
         when(diffRepository.getById(id)).thenReturn(Optional.of(diff));
-        DiffResult difference = diffService.getDifference(id);
+        var difference = diffService.getDifference(id);
 
         assertEquals(ResultType.EQUALS, difference.getResultType());
         assertEquals(ResultType.EQUALS.getMessage(), difference.getMessage());
@@ -107,11 +107,11 @@ class DiffServiceTest {
 
     @Test
     void getDifferenceLengthNotEquals() throws Exception {
-        final String id = "131";
-        Diff diff = new Diff(id).setLeft("YjExYQ==").setRight("YmM=");
+        final var id = "131";
+        var diff = new Diff(id).setLeft("YjExYQ==").setRight("YmM=");
 
         when(diffRepository.getById(id)).thenReturn(Optional.of(diff));
-        DiffResult difference = diffService.getDifference(id);
+        var difference = diffService.getDifference(id);
 
         assertEquals(ResultType.DIFFERENT_LENGTH, difference.getResultType());
         assertEquals(ResultType.DIFFERENT_LENGTH.getMessage(), difference.getMessage());
@@ -119,12 +119,12 @@ class DiffServiceTest {
 
     @Test
     void getDifferenceSameLength() throws Exception {
-        final String id = "132";
-        Diff diff = new Diff(id).setLeft("Ym9ieQ==").setRight("YmFiYQ==");
-        String messageExpected = "{offset=2, length=1}, {offset=4, length=1}";
+        final var id = "132";
+        final var diff = new Diff(id).setLeft("Ym9ieQ==").setRight("YmFiYQ==");
+        var messageExpected = "{offset=2, length=1}, {offset=4, length=1}";
 
         when(diffRepository.getById(id)).thenReturn(Optional.of(diff));
-        DiffResult difference = diffService.getDifference(id);
+        var difference = diffService.getDifference(id);
 
         assertEquals(ResultType.SAME_LENGTH, difference.getResultType());
         assertEquals(messageExpected, difference.getMessage());

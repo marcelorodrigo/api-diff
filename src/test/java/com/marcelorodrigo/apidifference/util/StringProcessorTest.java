@@ -1,9 +1,6 @@
 package com.marcelorodrigo.apidifference.util;
 
-import com.marcelorodrigo.apidifference.model.Difference;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,10 +8,9 @@ class StringProcessorTest {
 
     @Test
     void getDifferences() {
-        final String left = "Marcelo Rodrigo";
-        final String right = "MarXYlo RoTrig9";
-
-        List<Difference> differences = StringProcessor.getDifferences(left, right);
+        final var left = "Marcelo Rodrigo";
+        final var right = "MarXYlo RoTrig9";
+        final var differences = StringProcessor.getDifferences(left, right);
         assertEquals(3, differences.size());
 
         // First difference

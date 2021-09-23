@@ -1,14 +1,11 @@
 package com.marcelorodrigo.apidifference.model;
 
 public class Diff {
-
-    private String id;
-
+    private final String id;
     private String left;
-
     private String right;
 
-    public Diff(String id) {
+    public Diff(final String id) {
         this.id = id;
     }
 

@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class DiffService {
-
     public static final String MISSING_LEFT_DATA = "Missing left data to compare differences";
     public static final String MISSING_RIGHT_DATA = "Missing right data to compare differences";
 
@@ -54,7 +53,7 @@ public class DiffService {
     }
 
     /**
-     * Get Diffresult from a recorded Diff
+     * Get DiffResult from a recorded Diff
      *
      * @param id Diff ID
      * @return DiffResult

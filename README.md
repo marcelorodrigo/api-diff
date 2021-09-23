@@ -8,7 +8,7 @@ and providing analysis about the difference between data stored.
 
 ## Technologies
 
-- Java 11
+- Java 17
 - [Spring Boot](http://spring.io/projects/spring-boot)
 - [Swagger](https://swagger.io/)
 - [Swagger UI](https://swagger.io/tools/swagger-ui/)
@@ -17,8 +17,8 @@ and providing analysis about the difference between data stored.
 
 ## Prerequisites
 
-- JDK 11
-- Maven 3.6 (or newer)
+- JDK 17
+- Maven 3.8 (or newer)
 - Git
 - HTTP 8080 port available (to run API server)
 

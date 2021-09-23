@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public class DiffRepository {
-
     private final HashMap<String, Diff> repository = new HashMap<>();
 
     public Optional<Diff> getById(String id) {
