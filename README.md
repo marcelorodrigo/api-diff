@@ -2,6 +2,10 @@ API Difference
 ==============
 
 [![Java CI with Maven](https://github.com/marcelorodrigo/api-diff/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/marcelorodrigo/api-diff/actions/workflows/maven.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marcelorodrigo_api-diff&metric=alert_status)](https://sonarcloud.io/dashboard?id=marcelorodrigo_api-diff)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=marcelorodrigo_api-diff&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=marcelorodrigo_api-diff)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=marcelorodrigo_api-diff&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=marcelorodrigo_api-diff)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=marcelorodrigo_api-diff&metric=coverage)](https://sonarcloud.io/dashboard?id=marcelorodrigo_api-diff)
 
 This simple API works on accepting JSON base64 encoded binary data
 and providing analysis about the difference between data stored.
