@@ -14,15 +14,15 @@ class StringProcessorTest {
         assertEquals(3, differences.size());
 
         // First difference
-        assertEquals(2, differences.get(0).getLength());
-        assertEquals(3, differences.get(0).getOffset());
+        assertEquals(2, differences.get(0).length());
+        assertEquals(3, differences.get(0).offset());
 
         // Second difference
-        assertEquals(1, differences.get(1).getLength());
-        assertEquals(10, differences.get(1).getOffset());
+        assertEquals(1, differences.get(1).length());
+        assertEquals(10, differences.get(1).offset());
 
         // Third difference
-        assertEquals(1, differences.get(2).getLength());
-        assertEquals(14, differences.get(2).getOffset());
+        assertEquals(1, differences.get(2).length());
+        assertEquals(14, differences.get(2).offset());
     }
 }
