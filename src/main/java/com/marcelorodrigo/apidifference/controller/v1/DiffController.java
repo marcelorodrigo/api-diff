@@ -39,7 +39,7 @@ public class DiffController {
             @ApiParam(value = "ID", required = true) @PathVariable String id,
             @ApiParam(value = "JSON Base64", required = true) @RequestBody Base64VO base64) {
         try {
-            var diff = diffService.addLeft(id, base64.getData());
+            final var diff = diffService.addLeft(id, base64.getData());
             return ResponseEntity.created(getCreatedURI(diff.getId())).build();
         } catch (InvalidBase64Exception e) {
             return ResponseEntity.badRequest().build();
@@ -57,7 +57,7 @@ public class DiffController {
             @ApiParam(value = "ID", required = true) @PathVariable String id,
             @ApiParam(value = "JSON Base64", required = true) @RequestBody Base64VO base64) {
         try {
-            var diff = diffService.addRight(id, base64.getData());
+            final var diff = diffService.addRight(id, base64.getData());
             return ResponseEntity.created(getCreatedURI(diff.getId())).build();
         } catch (InvalidBase64Exception e) {
             return ResponseEntity.badRequest().build();
@@ -78,7 +78,7 @@ public class DiffController {
         } catch (DiffNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (DiffException e) {
-            DiffResult result = new DiffResult()
+            final var result = new DiffResult()
                     .setResultType(ResultType.INVALID_DATA)
                     .setMessage(e.getMessage());
             return ResponseEntity.badRequest().body(result);

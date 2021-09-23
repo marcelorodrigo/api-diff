@@ -1,7 +1,6 @@
 package com.marcelorodrigo.apidifference.model;
 
 public enum ResultType {
-
     EQUALS("Values are equal"),
     DIFFERENT_LENGTH("Values are of different length"),
     SAME_LENGTH("Values have same length"),
