@@ -1,21 +1,17 @@
 package com.marcelorodrigo.apidifference.vo;
 
 import com.marcelorodrigo.apidifference.model.ResultType;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-@ApiModel("Difference")
-public class DiffResult implements Serializable {
+@Schema(name = "Difference")
+public class DiffResult {
 
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty("Result")
+    @Schema(name = "Result")
     private ResultType resultType;
 
-    @ApiModelProperty("Message")
+    @Schema(name = "Message")
     private String message;
 
     public ResultType getResultType() {

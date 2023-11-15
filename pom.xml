@@ -4,19 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.marcelorodrigo</groupId>
     <artifactId>api-diff</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <name>API Difference</name>
     <description>JSON Base64 API Difference</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>3.1.5</version>
     </parent>
 
     <properties>
         <java.version>17</java.version>
-        <spring.fox.version>3.0.0</spring.fox.version>
+        <springdoc.version>1.7.0</springdoc.version>
         <sonar.projectKey>marcelorodrigo_api-diff</sonar.projectKey>
         <sonar.organization>marcelorodrigo</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -33,16 +33,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${spring.fox.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${spring.fox.version}</version>
-            <scope>compile</scope>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
     </dependencies>
 
@@ -55,7 +48,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>0.8.11</version>
                 <executions>
                     <execution>
                         <goals>
@@ -74,7 +67,7 @@
             <plugin>
                 <groupId>org.openclover</groupId>
                 <artifactId>clover-maven-plugin</artifactId>
-                <version>4.4.1</version>
+                <version>4.5.1</version>
             </plugin>
         </plugins>
     </build>
