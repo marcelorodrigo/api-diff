@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <springdoc.version>1.7.0</springdoc.version>
+        <springdoc.version>2.2.0</springdoc.version>
         <sonar.projectKey>marcelorodrigo_api-diff</sonar.projectKey>
         <sonar.organization>marcelorodrigo</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${springdoc.version}</version>
         </dependency>
     </dependencies>
