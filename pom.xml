@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <springdoc.version>2.8.3</springdoc.version>
+        <springdoc.version>3.0.0</springdoc.version>
         <sonar.projectKey>marcelorodrigo_api-diff</sonar.projectKey>
         <sonar.organization>marcelorodrigo</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
